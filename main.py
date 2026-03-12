@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from routers.test import router
 
 
 app = FastAPI(
@@ -8,6 +9,7 @@ app = FastAPI(
     version="1.0.0",
 )
 
+app.include_router(router)  
 
 @app.get("/api/data")
 def get_sample_data():
