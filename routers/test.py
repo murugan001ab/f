@@ -26,7 +26,7 @@ def get_db():
 from datetime import datetime, timedelta
 from fastapi import HTTPException
 
-EMAIL_VERIFY_EXPIRE_MIN = os.getenv("EMAIL_VERIFY_EXPIRE_MIN", 30)
+EMAIL_VERIFY_EXPIRE_MIN = int(os.getenv("EMAIL_VERIFY_EXPIRE_MIN", 30))
 
 
 @router.post("/register")
