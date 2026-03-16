@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from routers.test import router
-
+from routers.services import service
 
 app = FastAPI(
     title="Vercel + FastAPI",
@@ -10,6 +10,7 @@ app = FastAPI(
 )
 
 app.include_router(router) 
+app.include_router(service)
 
 @app.get("/api/data")
 def get_sample_data():

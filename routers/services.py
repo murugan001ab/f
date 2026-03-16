@@ -4,7 +4,9 @@ from sqlalchemy.orm import Session
 
 from db.session import SessionLocal     
 from models.user import User
-router = APIRouter(prefix="/services", tags=["Services"])
+
+
+service = APIRouter(prefix="/services", tags=["Services"])
 
 def get_db():
 
@@ -15,7 +17,7 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/user/{user_id}")
+@service.get("/user/{user_id}")
 async def get_user_services(user_id: int, db: Session = Depends(get_db)):
 
     user = await db.query(User).filter(User.id == user_id).first()
