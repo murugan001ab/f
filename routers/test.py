@@ -10,6 +10,8 @@ from core.jwt import create_access_token, create_refresh_token, decode_token,cre
 from utils.email import send_verification_email
 import os
 
+from event.create_event import create_user_event
+
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
@@ -170,5 +172,7 @@ def verify_email(token: str, db: Session = Depends(get_db)):
     user.verification_token = None
 
     db.commit()
+
+    create_user_event(user_id)
 
     return {"message": "Email verified successfully"}
